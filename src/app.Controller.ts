@@ -1,12 +1,12 @@
-import { Controller, Get, Param, Post, Req } from "@nestjs/common";
+import { Controller, Delete, Get, Param, Patch, Post, Req } from "@nestjs/common";
 import { Request } from "express";
 
-@Controller('/user')
+@Controller('/user',)
 export class AppController{
    
 
-    // @Get('1')
-    // getuser(){return {'name':'Hridoy','email':'hridoycse.eng@gmail.com'};}
+    @Get()
+    getuser(){return {'name':'Hridoy','email':'hridoycse.eng@gmail.com'};}
 
     // @Get('2')
     // getuser1(){return {'name':'Sumaiya','email':'sumaiya.eng@gmail.com'};}
@@ -15,7 +15,16 @@ export class AppController{
 
     
     @Post()
-    posts(@Req() req:Request){
+    store(@Req() req:Request){
         console.log(req.body)
         return req.body;}
+
+
+        @Patch ('/:userId')
+        update(@Req() req:Request){
+            console.log(req.body)
+            return req.body;}
+
+        @Delete('/:userId')
+        delete (@Param() params:{userId:number}){return params;}
 }
